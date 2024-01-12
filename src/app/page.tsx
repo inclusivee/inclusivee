@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <div className="bg-cover bg-no-repeat bg-[url('/assets/image/bg-home.png')] h-screen w-full  flex justify-center items-center text-left ">
         <section className=" w-11/12 h-5/6 bg-white flex justify-start items-center mt-20 bg-opacity-75 rounded-3xl  flex-col text-left">
-        <h1 className="text-4xl font-extrabold font-[Arial] mt-20 mb-10 opa">Você sabe o que é a inclusivee?</h1>
+        <h1 className="text-4xl font-extrabold font-[Arial] mt-10 mb-10 opa">Você sabe o que é a inclusivee?</h1>
         <div className="mx-10">
         <p className="mb-5 text-left"><strong>Bem-vinde ao primeiro banco de talentos</strong> para preencher vagas com foco na diversidade das empresas, remunerando as comunidades para buscar os melhores perfis.</p>
         <p className="mb-5 text-left">Essa ferramenta facilitará o dia a dia das empresas e dos candidatos minorizados, garantindo um match com curadoria nas auto declarações,

@@ -16,7 +16,7 @@ export default function Login() {
       <Input type="email" className="border-b-2  border-[#008037] w-[300px]"></Input>
       <Label className="text-xs text-[#008037]">Senha:</Label>
       <Input type="email" className="border-b-2 border-[#008037] b w-[300px] "></Input>
-      <Link href={"/"} className="flex text-xs justify-end items-end text-[#008037] ">Esqueci a senha</Link>
+      <Link href={'/pages/'} className="flex text-xs justify-end items-end text-[#008037] ">Esqueci a senha</Link>
       <Link href={'/pages/login'} className="flex justify-center items-center"><Button className="bg-[#008037] text-white px-10 py-3 rounded-lg mt-5">Acessar</Button></Link> 
       </Form>
       </div>
