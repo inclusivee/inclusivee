@@ -21,10 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="shortcut icon" href="/assets/image/logo-inclusivee.png" type="image/x-icon" />
+      </head>
       <body className={inter.className}>
-        <header className='bg-white flex justify-between mx-10 py-5 shadow-xl'>
-        <Image src="/assets/image/Logo.png" alt="Logo Inclusivee" width={200} height={0} />
-        <Button className="bg-[#008037] text-white px-10 rounded-lg">Acessar</Button>
+        <header className='bg-white flex justify-between  py-2 px-10 shadow-xl fixed top-0 left-0 right-0 '>
+        <Link href={'/'}><Image src="/assets/image/Logo.png" alt="Logo Inclusivee" width={200} height={0} /></Link>
+        <Link href={'/pages/login'}><Button className="bg-[#008037] text-white px-10 py-3 rounded-lg">Acessar</Button></Link> 
         </header>
 
 
