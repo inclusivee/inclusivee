@@ -1,5 +1,3 @@
-'use client'
-
 import Form from "@/app/components/Form";
 import Link from "next/link";
 import Label from "@/app/components/Label";
