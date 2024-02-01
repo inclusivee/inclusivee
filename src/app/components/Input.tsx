@@ -1,7 +1,8 @@
-export default function Input(props: any) {
-    return (
-        <>
-            <input {...props}/>
-        </>
-    )
+export default function Input(props:any) {
+ ;
+  return (
+    <>
+      <input {...props} />
+    </>
+  );
 }
