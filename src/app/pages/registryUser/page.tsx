@@ -9,9 +9,9 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 type FormValues = {
+  name:string
   email: string;
   password: string;
-  validatePassword: string;
 };
 
 export default function RegistryUser() {
@@ -40,6 +40,12 @@ export default function RegistryUser() {
           />
         </Link>
         <Input
+          {...register("name")}
+          type="text"
+          placeholder="Nome Completo"
+          className="mb-5 w-72 border-b-2 border-[#008037]"
+        />
+        <Input
           {...register("email")}
           type="email"
           placeholder="Email"
@@ -51,14 +57,9 @@ export default function RegistryUser() {
           type="password"
           className=" mb-5 w-72 border-b-2 border-[#008037]"
         />
-        <Input
-          {...register("validatePassword")}
-          placeholder="Repita a Senha"
-          type="password"
-          className=" mb-5 w-72 border-b-2 border-[#008037]"
-        />
+        
         <Link href={"/pages/home"} className="flex items-center justify-center">
-          <Button className="mt-5 rounded-lg bg-[#008037] px-10 py-3 text-white">
+          <Button type="submit" className="mt-5 rounded-lg bg-[#008037] px-10 py-3 text-white">
             Cadastrar
           </Button>
         </Link>
