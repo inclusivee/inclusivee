@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="flex flex-row">
             <Link
               href={"/pages/homeEmpresa"}
-              className="md:px10 block flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
+              className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/profile.png"
@@ -41,7 +41,7 @@ export default function RootLayout({
             </Link>
             <Link
               href={"/pages/homeEmpresa"}
-              className="md:px10 block flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
+              className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/order.png"
@@ -53,7 +53,7 @@ export default function RootLayout({
             </Link>
             <Link
               href={"/pages/homeEmpresa"}
-              className="md:px10 block flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
+              className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/job.png"
@@ -65,7 +65,7 @@ export default function RootLayout({
             </Link>
             <Link
               href={"/pages/homeEmpresa"}
-              className="md:px10 block flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
+              className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/cart.png"
@@ -78,7 +78,7 @@ export default function RootLayout({
 
             <Link
               href={"/pages/homeEmpresa"}
-              className="md:px10 mr-3 block flex items-center  justify-center px-5   py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl  lg:rounded-lg lg:px-2"
+              className="md:px10 mr-3  flex items-center  justify-center px-5   py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3 md:text-2xl  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/notification.png"
