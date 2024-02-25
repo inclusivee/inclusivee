@@ -5,8 +5,6 @@ import UnionSection from "../../public/assets/image/Union.png";
 import MulherGif from "../../public/assets/image/moca-telefone.gif";
 import RapazGif from "../../public/assets/image/rapaz-telefone.gif";
 
-
-
 export default function Home() {
   return (
     <>
@@ -56,7 +54,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="h-full w-full ">
+            <div className="h-full w-full  md:w-[100%]">
               <Image
                 alt="União das paginas"
                 src={UnionSection}
@@ -66,31 +64,33 @@ export default function Home() {
                 }}
                 className=" relative lg:-mt-10"
               />
-              <div className="absolute inset-0 top-60 mt-16 flex w-full flex-col items-center justify-center sm:top-96 sm:mt-48  md:mt-64 ">
-                <h1 className="text-lg sm:text-4xl md:text-5xl">
+              <div className="absolute inset-0 top-[117%] mt-16 flex w-full flex-col items-center justify-center sm:top-[120%]  ">
+                <h1 className="md:6/6 text-[150%] sm:text-4xl md:items-center md:justify-center md:text-5xl ">
                   <b>Você sabe o que é a inclusivee?</b>
                 </h1>
-                <p className="mt-4 w-5/6 text-xs sm:text-lg  md:flex-row md:text-2xl">
-                  Essa ferramenta facilitará o dia a dia das empresas e dos
-                  candidatos minorizados, garantindo um match com curadoria nas
-                  auto declarações, reduzindo problemas na divulgação de vagas
-                  afirmativas por causa da legislação global e reduzindo os
-                  altos custos da empresa em localizar melhores candidatos nas
-                  comunidades. Tudo isso, investindo em ONGs e Comunidades e
-                  mantendo viva as ações de impacto de apoio e capacitação aos
-                  grupos minorizados.
-                </p>
-                <div className="flex flex-row items-center	justify-center ">
-                  <Image
-                    alt="Mulher no Celular"
-                    src={MulherGif}
-                    className="mt-5 w-24 sm:mt-16 sm:w-40"
-                  />
-                  <Image
-                    alt="Imagem Rapaz no Celular"
-                    src={RapazGif}
-                    className="mb-4 w-24 sm:mb-10 sm:w-40"
-                  />
+                <div className=" flex flex-col items-center justify-center md:mt-10 md:flex md:flex-row md:justify-around ">
+                  <p className="mt-4 w-5/6 text-[70%]  md:ml-10 md:text-[100%] md:w-[100%]">
+                    Essa ferramenta facilitará o dia a dia das empresas e dos
+                    candidatos minorizados, garantindo um match com curadoria
+                    nas auto declarações, reduzindo problemas na divulgação de
+                    vagas afirmativas por causa da legislação global e reduzindo
+                    os altos custos da empresa em localizar melhores candidatos
+                    nas comunidades. Tudo isso, investindo em ONGs e Comunidades
+                    e mantendo viva as ações de impacto de apoio e capacitação
+                    aos grupos minorizados.
+                  </p>
+                  <div className="flex flex-row items-center justify-center ">
+                    <Image
+                      alt="Mulher no Celular"
+                      src={MulherGif}
+                      className=" w-[30%] sm:mt-16 md:w-[50%] "
+                    />
+                    <Image
+                      alt="Imagem Rapaz no Celular"
+                      src={RapazGif}
+                      className="mb-4 w-[30%]  sm:mb-10  md:w-[50%]"
+                    />
+                  </div>
                 </div>
               </div>
               <div className=" flex h-screen w-screen flex-col  items-center justify-center bg-[#008037] ">
