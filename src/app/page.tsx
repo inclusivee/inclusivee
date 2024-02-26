@@ -1,9 +1,13 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import background from "../../public/assets/image/bg-home.png";
 import UnionSection from "../../public/assets/image/Union.png";
 import MulherGif from "../../public/assets/image/moca-telefone.gif";
 import RapazGif from "../../public/assets/image/rapaz-telefone.gif";
+import handleButtonClick from "./components/createCookie";
+
+
 
 export default function Home() {
   return (
@@ -103,6 +107,7 @@ export default function Home() {
                   </h2>
 
                   <Link
+                  onClick={() => handleButtonClick('user')}
                     href="/pages/cadastro"
                     className="
                    flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold text-white sm:mt-10 sm:text-lg md:mt-20 md:text-2xl  lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
@@ -116,6 +121,7 @@ export default function Home() {
                   </h2>
 
                   <Link
+                  onClick={() => handleButtonClick('company')}
                     href="/pages/cadastro"
                     className="
                    flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold text-white sm:mt-10 sm:text-lg md:mt-20 md:text-2xl  lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
@@ -129,6 +135,7 @@ export default function Home() {
                   </h2>
 
                   <Link
+                  onClick={() => handleButtonClick('ong')}
                     href="/pages/cadastro"
                     className="
                    flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold text-white  sm:mt-10 sm:text-lg md:mt-20 md:text-2xl  lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"

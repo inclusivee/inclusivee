@@ -2,7 +2,7 @@
 import Form from "@/app/components/Form";
 import Link from "next/link";
 import Label from "@/app/components/Label";
-import Input from "@/app/components/Input";
+import {Input} from "@/app/components/input";
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";

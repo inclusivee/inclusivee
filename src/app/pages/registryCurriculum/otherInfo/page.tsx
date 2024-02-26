@@ -1,6 +1,6 @@
 
 import Form from "@/app/components/Form";
-import Input from "@/app/components/Input";
+import {Input} from "@/app/components/input";
 import Label from "@/app/components/Label";
 import Link from "next/link";
 

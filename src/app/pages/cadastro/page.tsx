@@ -1,24 +1,24 @@
-'use client'
+"use client";
 import Button from "@/app/components/Button";
 import Form from "@/app/components/Form";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import createAccount from "@/modules/auth/actions/auth-action";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/app/components/input";
+import Cookies from "js-cookie";
 
-const schema= z.object({
-  name: z.string().min(3,'Por favor informe um nome válido'),
-  email: z.string().min(3,'Por favor insira um email válido'),
-  password: z.string().min(6,'Por favor inserir uma senha com mais de 6 caracteres')
+const schema = z.object({
+  name: z.string().min(3, "Por favor informe um nome válido"),
+  email: z.string().min(3, "Por favor insira um email válido"),
+  password: z
+    .string()
+    .min(6, "Por favor inserir uma senha com mais de 6 caracteres"),
+});
 
-})
-
-type DataProps= z.infer<typeof schema>
-
+type DataProps = z.infer<typeof schema>;
 
 export default function SignUpForm() {
   const {
@@ -26,28 +26,30 @@ export default function SignUpForm() {
     register,
     formState: { errors },
   } = useForm<DataProps>({
-    mode:'onBlur',
-    resolver: zodResolver(schema)
+    mode: "onBlur",
+    resolver: zodResolver(schema),
   });
 
   const handlerFormSubmit = (data: DataProps) => {
+    const cookieValue = Cookies.get("typeUser");
+
     const formData = new FormData();
 
     for (const key in data) {
       formData.append(key, data[key]);
     }
-
+    formData.append("typeUser", cookieValue);
+    console.log(formData);
     createAccount(formData); // Passa o FormData diretamente para createAccount
-    redirect("/pages/homeCandidato");
-      
+    
   };
 
-  console.log(errors)
+  console.log(errors);
   return (
     <main className="flex h-[100vh] w-[100vw] items-center justify-center ">
       <Form
         onSubmit={handleSubmit(handlerFormSubmit)}
-        className="flex flex-col  justify-center border border-[#008037] px-10 py-10 shadow-2xl"
+        className=" justify-center flex flex-col border border-[#008037] px-10 py-10 shadow-2xl"
       >
         <Link href={"/"} className="">
           <Image
@@ -70,7 +72,6 @@ export default function SignUpForm() {
           className="mb-5 w-72 border-b-2 border-[#008037]"
         />
         <Input
-
           {...register("password")}
           placeholder="Senha"
           type="password"
