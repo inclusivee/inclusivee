@@ -39,7 +39,7 @@ export default function RootLayout({
           </Link>
           <Link
             href={"/pages/login"}
-            className="md:px10 mr-3 block flex h-7 items-center justify-center rounded bg-[#008037] px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10 md:py-2 md:py-3  md:text-2xl lg:rounded-lg"
+            className="md:px10 mr-3  flex h-7 items-center justify-center rounded bg-[#008037] px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10  md:py-3  md:text-2xl lg:rounded-lg"
           >
             Acessar
           </Link>

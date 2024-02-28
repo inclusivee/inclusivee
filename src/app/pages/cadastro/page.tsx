@@ -30,6 +30,7 @@ export default function SignUpForm() {
     resolver: zodResolver(schema),
   });
 
+ 
   const handlerFormSubmit = (data: DataProps) => {
     const cookieValue = Cookies.get("typeUser");
 

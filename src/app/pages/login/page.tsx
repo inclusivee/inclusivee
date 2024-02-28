@@ -1,26 +1,42 @@
 "use client";
-
 import Button from "@/app/components/Button";
 import Form from "@/app/components/Form";
-import Input from "@/app/components/Input";
 import Label from "@/app/components/Label";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import loginAccount from "@/modules/auth/actions/login-action";
+import { Input } from "@/app/components/input";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type FormValues = {
-  email: string;
-  password: string;
-};
+
+const schema = z.object({
+  email: z.string().min(3, "Por favor insira um email válido"),
+  password: z
+    .string()
+    .min(6, "Por favor inserir uma senha com mais de 6 caracteres"),
+});
+
+type DataProps = z.infer<typeof schema>;
+
 
 export default function Login() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<DataProps>({
+    mode: "onBlur",
+    resolver: zodResolver(schema),
+  });
+  const handlerFormSubmit = (data: DataProps) => {
+    const formData = new FormData();
 
-  const handlerFormSubmit = (data:any) => {
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    loginAccount(formData);
     console.log(data);
   };
   return (
@@ -47,23 +63,23 @@ export default function Login() {
             />
             <Input
               {...register("password")}
-              type="email"
+              type="password"
               className=" mt-4 w-[300px] border-b-2 border-[#008037] "
               placeholder="Senha"
             />
             <Link
               href={"/pages/"}
-              className="flex items-end justify-end text-xs text-[#008037] mt-4 "
+              className="mt-4 flex items-end justify-end text-xs text-[#008037] "
             >
               Esqueci a senha
             </Link>
 
-              <Link
-                href="/pages/registryCurriculum"
-                className="flex items-center justify-center mt-5 rounded-lg bg-[#008037] px-10 py-3 text-white"
-              >Acessar</Link>
-              
-            
+            <Button
+              href="/pages/registryCurriculum"
+              className="mt-5 flex items-center justify-center rounded-lg bg-[#008037] px-10 py-3 text-white"
+            >
+              Acessar
+            </Button>
           </Form>
         </div>
       </main>
