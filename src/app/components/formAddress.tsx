@@ -31,13 +31,13 @@ export default function FormAddress() {
   });
 
   const handlerFormSubmit = (data: DataProps) => {
-    const user = 1;
+    const user = 3;
     const formData = new FormData();
 
     for (const key in data) {
-      formData.append(key, data[key]);
+      formData.append(key, data[key as keyof typeof data]);
     }
-    formData.append("user", user)
+    formData.append("userId", user as unknown as keyof typeof data)
     console.log(formData); 
     createAddress(formData)
   };

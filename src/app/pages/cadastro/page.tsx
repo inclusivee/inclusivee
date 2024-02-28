@@ -37,9 +37,9 @@ export default function SignUpForm() {
     const formData = new FormData();
 
     for (const key in data) {
-      formData.append(key, data[key]);
+      formData.append(key, data[key as keyof typeof data]);
     }
-    formData.append("typeUser", cookieValue);
+    formData.append("typeUser", cookieValue as unknown as keyof typeof data);
     console.log(formData);
     createAccount(formData); // Passa o FormData diretamente para createAccount
     

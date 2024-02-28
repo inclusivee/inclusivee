@@ -34,7 +34,7 @@ export default function Login() {
     const formData = new FormData();
 
     for (const key in data) {
-      formData.append(key, data[key]);
+      formData.append(key, data[key as keyof typeof data]);
     }
     loginAccount(formData);
     console.log(data);
