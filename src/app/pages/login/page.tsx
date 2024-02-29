@@ -37,7 +37,6 @@ export default function Login() {
       formData.append(key, data[key as keyof typeof data]);
     }
     loginAccount(formData);
-    console.log(data);
   };
   return (
     <div>
