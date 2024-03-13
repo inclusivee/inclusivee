@@ -17,7 +17,7 @@ export default function RootLayout({
       </head>
       <body>
         <header className="flex items-center justify-between bg-white shadow-xl sm:px-10 sm:py-2  ">
-          <Link href={"/"}>
+          <Link href={"/pages/homeCandidato"}>
             <Image
               src="/assets/image/Logo.png"
               alt="Logo Inclusivee"

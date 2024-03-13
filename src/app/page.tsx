@@ -73,7 +73,7 @@ export default function Home() {
                   <b>Você sabe o que é a inclusivee?</b>
                 </h1>
                 <div className=" flex flex-col items-center justify-center md:mt-10 md:flex md:flex-row md:justify-around ">
-                  <p className="mt-4 w-5/6 text-[70%]  md:ml-10 md:text-[100%] md:w-[100%]">
+                  <p className="mt-4 w-5/6 text-[70%]  md:ml-10 md:text-[100%] md:w-[100%] lg:ml-32">
                     Essa ferramenta facilitará o dia a dia das empresas e dos
                     candidatos minorizados, garantindo um match com curadoria
                     nas auto declarações, reduzindo problemas na divulgação de
@@ -83,24 +83,24 @@ export default function Home() {
                     e mantendo viva as ações de impacto de apoio e capacitação
                     aos grupos minorizados.
                   </p>
-                  <div className="flex flex-row items-center justify-center ">
+                  <div className="flex flex-row items-center justify-center gap-x-10 ">
                     <Image
                       alt="Mulher no Celular"
                       src={MulherGif}
-                      className=" w-[30%] sm:mt-16 md:w-[50%] "
+                      className=" w-[20%] sm:mt-16 md:w-[30%]  lg:mt-44 "
                     />
                     <Image
                       alt="Imagem Rapaz no Celular"
                       src={RapazGif}
-                      className="mb-4 w-[30%]  sm:mb-10  md:w-[50%]"
+                      className="mb-4 w-[20%]  sm:mb-10  md:w-[30%] "
                     />
                   </div>
                 </div>
               </div>
-              <div className=" flex h-screen w-screen flex-col  items-center justify-center bg-[#008037] ">
+              <div className=" flex h-screen w-screen flex-col lg:flex-row items-center justify-center bg-[#008037] gap-4 ">
                 <div
                   id="candidato"
-                  className="mb-5 mt-5 flex h-80 w-4/6 flex-col  items-center justify-center rounded-lg bg-white"
+                  className="mb-5 mt-5 flex h-80 w-4/6 flex-col  lg:flex-1 lg: items-center justify-center rounded-lg bg-white"
                 >
                   <h2 className=" mb-5 w-4/6 text-center text-sm">
                     Quero ter meu currículo na plataforma
@@ -110,12 +110,12 @@ export default function Home() {
                   onClick={() => handleButtonClick('user')}
                     href="/pages/cadastro"
                     className="
-                   flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold text-white sm:mt-10 sm:text-lg md:mt-20 md:text-2xl  lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
+                   flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold  text-white sm:mt-10 sm:text-lg md:mt-20 md:text-2xl  lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
                   >
                     Cadastre-se
                   </Link>
                 </div>
-                <div className="mb-5 mt-5 flex h-80 w-4/6 flex-col  items-center justify-center rounded-lg bg-white">
+                <div className="mb-5 mt-5 flex h-80 w-4/6 flex-col lg:flex-1  items-center justify-center rounded-lg bg-white">
                   <h2 className=" mb-5 w-4/6 text-center text-sm">
                     Quero buscar candidatos para uma vaga
                   </h2>
@@ -129,7 +129,7 @@ export default function Home() {
                     Teste Gratuito
                   </Link>
                 </div>
-                <div className="mb-5 mt-5 flex h-80 w-4/6 flex-col items-center  justify-center  rounded-lg bg-white">
+                <div className="mb-5 mt-5 flex h-80 w-4/6 flex-col items-center  lg:flex-1 justify-center  rounded-lg bg-white">
                   <h2 className=" mb-5 w-4/6 text-center text-sm">
                     É uma comunidade de apoio a diversidade e quer participar?
                   </h2>
