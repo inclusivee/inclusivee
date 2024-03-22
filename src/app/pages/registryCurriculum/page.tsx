@@ -6,22 +6,49 @@ import {Input} from "@/app/components/input";
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import Cookies from "js-cookie";
+import createCandiateProfile from "@/modules/auth/actions/profile-actions";
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-};
+
+
+const schema = z.object({
+  firstName: z.string().min(3),
+  lastName: z.string().min(3),
+  birthday: z.string().min(1),
+  cpf: z.string().min(3),
+  rg: z.string().min(3),
+  nationality: z.string().min(2),
+  phone: z.string().min(1),
+});
+
+type DataProps = z.infer<typeof schema>;
+
+
 
 export default function RegistryCurriculum() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<DataProps>({
+    mode: "onBlur",
+    resolver: zodResolver(schema),
+  });
 
-  const handlerFormSubmit = (data: any) => {
-    console.log(data);
+  const handlerFormSubmit = (data: DataProps) => {
+    const user = Cookies.get('userId');
+    const formData = new FormData();
+
+    for (const key in data) {
+      formData.append(key, data[key as keyof typeof data]);
+    }
+    formData.append("userId", user as unknown as keyof typeof data)
+    console.log(formData); 
+    createCandiateProfile(formData)
   };
+
   return (
     <main className="flex h-[100vh] w-[100vw] items-center justify-around ">
       <Form
@@ -43,26 +70,34 @@ export default function RegistryCurriculum() {
         ></Input>
         <Label className="text-xs text-[#008037]">Data de Nascimento:</Label>
         <Input
+        {...register("birthday")}
           type="date"
           className=" mb-5 w-72 border-b-2 border-[#008037] "
         ></Input>
         <Label className="text-xs text-[#008037]">CPF:</Label>
         <Input
+        {...register("cpf")}
           type="text"
           className=" mb-5 w-72 border-b-2 border-[#008037] "
         ></Input>
         <Label className="text-xs text-[#008037]">Identidade:</Label>
         <Input
+        {...register("rg")}
+
           type="text"
           className=" mb-5 w-72 border-b-2 border-[#008037] "
         ></Input>
         <Label className="text-xs text-[#008037]">Nascionalidade:</Label>
         <Input
+        {...register("nationality")}
+        
           type="text"
           className=" mb-5 w-72 border-b-2 border-[#008037] "
         ></Input>
         <Label className="text-xs text-[#008037]">Telefone:</Label>
         <Input
+        {...register("phone")}
+        
           type="tel"
           className=" mb-5 w-72 border-b-2 border-[#008037] "
         ></Input>

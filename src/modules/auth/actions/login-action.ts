@@ -2,6 +2,11 @@
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import Cookies from "js-cookie";
+import {handleUserId} from '@/app/components/createCookie';
+import { cookies } from 'next/headers'
+
+
 
 const prisma = new PrismaClient();
 
@@ -27,12 +32,20 @@ async function loginAccount(formData: FormData) {
  const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
  if (isPasswordCorrect) {
+   const userId = user.id as number;
+   cookies().set('userId', `${userId}`);
+
+
     // Senha correta, prossegue com o redirecionamento ou a lógica de login
     redirect("/pages/homeCandidato");
  } else {
     // Senha incorreta, você pode retornar um erro ou redirecionar
     console.log('Senha incorreta');
  }
+ 
+
 }
+
+
 
 export default loginAccount;

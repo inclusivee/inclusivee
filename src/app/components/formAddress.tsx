@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Form from "@/app/components/Form";
 import { Input } from "@/app/components/input";
 import Label from "@/app/components/Label";
@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Button from "./Button";
 import createAddress from "@/modules/auth/actions/address-action";
+import Cookies from "js-cookie";
+
+
 
 const schema = z.object({
   zipcode: z.string().min(3, "Por favor informe um CEP válido"),
@@ -31,7 +34,7 @@ export default function FormAddress() {
   });
 
   const handlerFormSubmit = (data: DataProps) => {
-    const user = 3;
+    const user = Cookies.get('userId');
     const formData = new FormData();
 
     for (const key in data) {

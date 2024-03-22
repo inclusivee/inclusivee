@@ -12,7 +12,8 @@ async function createAddress(formData: FormData) {
   const city = formData.get("city") as string;
   const state = formData.get("state") as string;
   const country = formData.get("country") as string;
-  const userId = formData.get('userId') as unknown as number;
+  const userIdString = formData.get("userId") as string;
+  const userId = parseInt(userIdString) as unknown as number;
 
   await prisma.address.create({
     data: {
@@ -23,7 +24,7 @@ async function createAddress(formData: FormData) {
       city,
       state,
       country,
-      userId
+      userId,
     },
   });
   redirect("/pages/registryCurriculum/experience");

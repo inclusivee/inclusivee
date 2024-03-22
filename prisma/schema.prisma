@@ -9,14 +9,15 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  name      String
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  type      String
-  addresses Address[]
+  id                Int                @id @default(autoincrement())
+  email             String             @unique
+  name              String
+  password          String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  type              String
+  addresses         Address[]
+  candidateProfiles CandidateProfile[]
 
   @@map("user")
 }
@@ -36,4 +37,20 @@ model Address {
   user      User     @relation(fields: [userId], references: [id])
 
   @@map("address")
+}
+
+model CandidateProfile {
+  id          Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  birthday    String
+  cpf         String
+  rg          String
+  nationality String
+  phone       String
+  userId      Int
+  // Supondo que você tenha um modelo User relacionado
+  user        User   @relation(fields: [userId], references: [id])
+
+  @@map("profileCandidate")
 }

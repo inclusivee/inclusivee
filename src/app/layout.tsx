@@ -99,9 +99,9 @@ export default function RootLayout({
             <div className='flex items-start justify-start h-80'>
               <button
                 onClick={onClose}
-                className="mt-4 rounded bg-red-600 px-4 py-2 text-white"
+                className="mt-2 rounded bg-red-600 px-4 py-2 text-white ml-1"
               >
-                Fechar
+                X
               </button>
             </div>
           </main>
@@ -123,6 +123,7 @@ export default function RootLayout({
         <header className="flex items-center justify-between bg-white shadow-xl sm:px-10 sm:py-2">
           <Link href={"/"}>
             <Image
+            id='logo_header'
               src="/assets/image/Logo.png"
               alt="Logo Inclusivee"
               width={200}
@@ -142,9 +143,9 @@ export default function RootLayout({
         </header>
 
         <main className="relative">{children}</main>
+            {/* Renderização do Modal */}
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
-        {/* Renderização do Modal */}
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </body>
     </html>
   );
