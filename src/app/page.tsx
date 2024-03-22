@@ -155,7 +155,7 @@ export default function Home(session: any) {
                     <Image
                       src="/assets/image/Logo.png"
                       alt="Logo Inclusivee"
-                      width={200} F
+                      width={200}
                       height={0}
                       className="ml-24"
                     />
