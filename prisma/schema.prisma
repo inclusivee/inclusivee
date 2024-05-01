@@ -18,12 +18,14 @@ model User {
   type              String
   addresses         Address[]
   candidateProfiles CandidateProfile[]
+  Experience        Experience[]
+  Ability           Ability[]
 
   @@map("user")
 }
 
 model Address {
-  id        Int      @id @default(autoincrement())
+  idAddress Int      @id @default(autoincrement())
   zipcode   String
   street    String
   number    String
@@ -40,17 +42,37 @@ model Address {
 }
 
 model CandidateProfile {
-  id          Int    @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  birthday    String
-  cpf         String
-  rg          String
-  nationality String
-  phone       String
-  userId      Int
-  // Supondo que você tenha um modelo User relacionado
-  user        User   @relation(fields: [userId], references: [id])
+  fullName String
+  birthday String
+  cpf      String @id @unique
+  rg       String
+  phone    String
+  userId   Int
+
+  user User @relation(fields: [userId], references: [id])
 
   @@map("profileCandidate")
+}
+model Experience {
+  idExperience     Int       @id @default(autoincrement())
+  jobTitle         String
+  companyName      String
+  startDate        DateTime
+  endDate          DateTime?
+  isCurrent        Boolean
+  responsibilities String
+  userId           Int
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("experience")
+}
+model Ability {
+  idAbility       Int    @id @default(autoincrement())
+  nameAbility     String
+  experienceYears Int
+  userId          Int
+  user            User   @relation(fields: [userId], references: [id])
+
+  @@map("ability")
 }

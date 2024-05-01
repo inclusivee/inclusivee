@@ -54,7 +54,7 @@ export default function Home(session: any) {
                 <Link
                   href="#candidato"
                   className="
-                 absolute z-40 flex rounded-md bg-white px-4 py-1 text-xs font-semibold text-[#008037] sm:mt-10 sm:text-lg md:mt-20 md:text-2xl lg:-top-40 lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
+                 absolute z-40 flex rounded-md bg-white px-4 py-1 text-xs font-semibold text-[#008037] sm:mt-10 sm:text-lg md:mt-20 md:text-2xl xl:mt-40 lg:-top-40 lg:rounded-lg lg:px-10 lg:py-5 lg:text-xl"
                 >
                   Cadastre-se
                 </Link>
@@ -99,12 +99,19 @@ export default function Home(session: any) {
                     </div>
                   </div>
                 </div>
-                <div className=" flex h-[90%] w-full flex-col items-center justify-around   bg-[#008037] lg:flex-row lg:px-10 ">
+                <div className="  flex h-[90%] w-full flex-col items-center justify-around   bg-[#008037] lg:flex-row lg:px-10 ">
                   <div
                     id="candidato"
-                    className="flex h-[80%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center"
+                    className="flex shadow-custom-shadow h-[73%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center"
                   >
-                    <h2 className=" mb-5 w-4/6 text-center text-sm lg:text-2xl">
+                    <Image
+                      src="/assets/image/candidate-icon.png"
+                      alt="Logo Inclusivee"
+                      width={100}
+                      height={0}
+                      className="mt-5"
+                    />
+                    <h2 className=" lg:mt-5 w-4/6 text-center text-sm lg:text-2xl">
                       Quero ter meu currículo na plataforma
                     </h2>
 
@@ -112,13 +119,21 @@ export default function Home(session: any) {
                       onClick={() => handleButtonClick("user")}
                       href="/pages/cadastro"
                       className="
-                    flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold  text-white  sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-10 lg:py-3  lg:text-xl"
+                    flex rounded-md bg-[#008037] px-4 py-2 lg: text-xs font-semibold  text-white  sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-16 lg:py-3  lg:text-xl"
                     >
                       Cadastre-se
                     </Link>
                   </div>
-                  <div className="flex h-[80%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center">
-                    <h2 className=" mb-5 w-4/6 text-center text-sm lg:text-2xl">
+                  <div className="flex shadow-custom-shadow h-[73%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center">
+                    
+                  <Image
+                      src="/assets/image/company-icon.png"
+                      alt="Logo Inclusivee"
+                      width={100}
+                      height={0}
+                      className="mt-5"
+                    />
+                    <h2 className=" lg:mt-10 w-4/6 text-center text-sm lg:text-2xl">
                       Quero buscar candidatos para uma vaga
                     </h2>
 
@@ -126,34 +141,42 @@ export default function Home(session: any) {
                       onClick={() => handleButtonClick("company")}
                       href="/pages/cadastro"
                       className="
-                    flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold  text-white  sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-10 lg:py-3  lg:text-xl"
+                      flex rounded-md bg-[#008037] px-4 py-2 lg: text-xs font-semibold  text-white  sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-16 lg:py-3  lg:text-xl"
                     >
                       Teste Gratuito
                     </Link>
                   </div>
-                  <div className="flex h-[80%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center ">
-                    <h2 className=" mb-5 w-5/6 text-center text-sm lg:-mt-7 lg:text-2xl">
-                      É uma comunidade de apoio a diversidade e quer participar?
+                  <div className="flex shadow-custom-shadow h-[73%] w-4/6 flex-col gap-5 rounded-[1.75rem] bg-white  lg:w-[30%] lg:items-center lg:justify-center ">
+                  <Image
+                      src="/assets/image/ong-icon.png"
+                      alt="Logo Inclusivee"
+                      width={100}
+                      height={0}
+                      className="mt-5"
+                    />
+                    
+                    <h2 className=" lg:mt-10 w-6/6 text-center text-sm lg:text-2xl">
+                      É uma comunidade de <br />  apoio a diversidade e <br /> quer participar?
                     </h2>
 
                     <Link
                       onClick={() => handleButtonClick("ong")}
                       href="/pages/cadastro"
                       className="
-                   flex rounded-md bg-[#008037] px-4 py-2 text-xs font-semibold text-white   sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-10 lg:py-3 lg:text-xl"
+                      flex rounded-md bg-[#008037] px-4 py-2 lg: text-xs font-semibold  text-white  sm:text-lg  md:text-2xl  lg:rounded-lg lg:px-16 lg:py-3  lg:text-xl"
                     >
                       Cadastre-se
-                    </Link>
+                    </Link> 
                   </div>
                 </div>
-                <div className='lg:ml-24 lg:h-[50%] lg:mt-24 lg:flex lg:flex-col'>
-                  <h2 className='text-[#008037] text-5xl text-bold'>Contato</h2>
+                <div className='lg:ml-24 lg:h-[50%] lg:mt-24 lg:flex lg:flex-col lg:mb-48'>
+                  <h2 className='text-[#008037] text-2xl font-bold'>Contato</h2>
                 <Contato/>
                 </div>
-                <footer className="lg:flex lg:h-40 lg:items-center lg:justify-between lg:mt-20 border-t-2 border-gray-300">
+                <footer className="lg:flex lg:h-40 bg-[#008037] lg:items-center lg:justify-between lg:mt-20 border-t-2 border-gray-300">
                   <Link href={"#logo_header"}>
                     <Image
-                      src="/assets/image/Logo.png"
+                      src="/assets/image/inclusivee-green.png"
                       alt="Logo Inclusivee"
                       width={200}
                       height={0}
@@ -161,7 +184,8 @@ export default function Home(session: any) {
                     />
                   </Link>
 
-                  <div className="lg:mr-10">
+                  <div className="lg:mr-10 text-white text-right font-medium">
+                  <p>Contatos:</p>
                     <p>gabriel@mommytech.com.br</p>
                     <p>(11) 99901-1317</p>
                   </div>

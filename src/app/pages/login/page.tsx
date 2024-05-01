@@ -5,7 +5,7 @@ import Label from "@/app/components/Label";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import loginAccount from "@/modules/auth/actions/login-action";
+import loginAccount from "@/modules/actions/login-action";
 import { Input } from "@/app/components/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";

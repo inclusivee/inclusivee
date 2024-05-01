@@ -8,14 +8,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-    subject: z.string(),
+    name: z.string(),
     email: z.string().email(),
+    company: z.string(),
     message: z.string()
+
 });
 
 type DataProps = z.infer<typeof schema>;
 
-export default function Contato(props: any) {
+export default function Contato({className, props}: any) {
     const {
         handleSubmit,
         register,
@@ -39,29 +41,39 @@ export default function Contato(props: any) {
   return (
     <>
       <Form onSubmit={handleSubmit(handlerFormSubmit)}
-        className="flex flex-col justify-center  "
+        className="flex flex-col justify-center "
         >
-        <Label className="lg:text-lg text-[#008037] lg:mt-5 text-semibold ">Assunto</Label>
+        <Label className="lg:text-sm text-[#008037] lg:mt-5 text-semibold ">Nome</Label>
         <Input
         
-        {...register("subject")}
+        {...register("name")}
         type="text"
-        className="mb-5  lg:w-3/6 border-b-2 border-[#008037]"
+        className="  lg:w-4/6 border-b-2 border-[#008037]"
         />
-        <Label className="lg:text-lg text-[#008037] lg:mt-5 text-semibold ">E-mail</Label>
+        <Label className="lg:text-sm text-[#008037] lg:mt-5 text-semibold ">E-mail</Label>
         <Input
         
         {...register("email")}
         type="text"
-        className="mb-5  lg:w-3/6 border-b-2 border-[#008037]"
+        className="  lg:w-4/6 border-b-2 border-[#008037]"
         />
-        <Label className="lg:text-lg text-[#008037] lg:mt-5 text-semibold ">Mensagem</Label>
+        
+        <Label className="lg:text-sm text-[#008037] lg:mt-5 text-semibold ">Empresa</Label>
+        <Input
+        
+        {...register("company")}
+        type="text"
+        className="  lg:w-4/6 border-b-2 border-[#008037] "
+        />
+        <Label className="lg:text-sm text-[#008037] lg:mt-5 text-semibold ">Assunto</Label>
         <Input
         
         {...register("message")}
         type="text"
-        className="mb-5  lg:w-3/6 border-b-2 border-[#008037] "
+        className="  lg:w-4/6 border-b-2 border-[#008037] "
         />
+
+        <button className=" flex w-40 rounded-md h-8 bg-[#008037] mt-10 text-sm justify-center items-center text-white"> Enviar</button>
       </Form>
     </>
   );

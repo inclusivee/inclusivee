@@ -4,7 +4,7 @@ import Form from "@/app/components/Form";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import createAccount from "@/modules/auth/actions/auth-action";
+import createAccount from "@/modules/actions/auth-action";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/app/components/input";

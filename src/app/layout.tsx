@@ -10,7 +10,7 @@ import Form from "./components/Form";
 import { Input } from "./components/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import loginAccount from "@/modules/auth/actions/login-action";
+import loginAccount from "@/modules/actions/login-action";
 import { z } from "zod";
 
 const schema = z.object({
