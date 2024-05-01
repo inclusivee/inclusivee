@@ -2,8 +2,6 @@
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
-import Cookies from "js-cookie";
-import {handleUserId} from '@/app/components/createCookie';
 import { cookies } from 'next/headers'
 
 
