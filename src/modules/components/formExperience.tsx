@@ -20,9 +20,11 @@ const schema = z.object({
 });
 
 type DataProps = z.infer<typeof schema>;
+type FormExperienceProps = {
+  onCloseModal: () => void;
+};
 
-
-export default function FormExperience({ onCloseModal }) {
+export default function FormExperience({ onCloseModal }: FormExperienceProps) {
   const {
     handleSubmit,
     register,
@@ -34,20 +36,25 @@ export default function FormExperience({ onCloseModal }) {
 
   const handlerFormSubmit = async (data: DataProps) => {
     const user = Cookies.get("userId");
+
+    if (!user) {
+      console.error("userId não encontrado nos cookies");
+      return;
+    }
     const formData = new FormData();
 
-     for (const key in data) {
-      formData.append(key, data[key as keyof typeof data]);
+    for (const key in data) {
+      const value = data[key as keyof typeof data] ?? "";
+      formData.append(key, value);
     }
-    formData.append("userId", user as unknown as keyof typeof data)
-    console.log(formData)
+    formData.append("userId", user as unknown as keyof typeof data);
+    console.log(formData);
     createExperience(formData);
-    onCloseModal()
-   };
+    onCloseModal();
+  };
 
   return (
-    
-      <Form
+    <Form
       onSubmit={handleSubmit(handlerFormSubmit)}
       className="lg:mt-8 lg:flex lg:h-full lg:w-full lg:flex-col lg:justify-start lg:px-10"
     >

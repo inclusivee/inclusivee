@@ -18,8 +18,11 @@ const schema = z.object({
 });
 
 type DataProps = z.infer<typeof schema>;
+type FormEducationProps = {
+  onCloseModal: () => void;
+};
 
-export default function FormEducation({ onCloseModal }) {
+export default function FormEducation({ onCloseModal }: FormEducationProps) {
   const {
     handleSubmit,
     register,
@@ -31,12 +34,17 @@ export default function FormEducation({ onCloseModal }) {
 
   const handleFormEducationSubmit = (data: DataProps) => {
     const user = Cookies.get("userId");
+    if (!user) {
+      console.error("userId não encontrado nos cookies");
+      return;
+    }
     const formData = new FormData();
 
     for (const key in data) {
-      formData.append(key, data[key as keyof typeof data]);
+      const value = data[key as keyof typeof data]?? '';
+    formData.append(key, value);
     }
-    formData.append("userId", user as unknown as keyof typeof data);
+    formData.append("userId", user);
     console.log(formData);
     createEducation(formData);
     console.log(data);

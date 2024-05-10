@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function getUserWithAllData(userId) {
+async function getUserWithAllData({userId}: {userId: number}) {
   // Busca o usuário e inclui todas as suas experiências e educações relacionadas
   const userWithExperiencesAndEducations = await prisma.user.findUnique({
     where: {

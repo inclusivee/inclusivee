@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function getUserEducationsAndExperiences({userId}) {
+async function getUserEducationsAndExperiences({userId}: {userId: number}) {
   try {
     // Busca todas as experiências do usuário
     const experiences = await prisma.experience.findMany({
