@@ -12,20 +12,20 @@ import getUserEducationsAndExperiences from "@/modules/actions/getExperienceDegr
 Modal.setAppElement("body");
 interface Experience {
   idExperience: number;
-  jobTitle: string;
-  companyName: string;
-  startDate: string;
+  jobTitle: string | null;
+  companyName: string | null;
+  startDate: string | null;
   endDate: string | null;
-  responsibilities: string;
+  responsibilities: string | null;
   userId: number;
 }
 
 interface Education {
   idEducation: number;
-  degree: string;
-  institution: string;
-  startDateEducation: string;
-  endDateEducation: string | null;
+  degree: string | null;
+  institution: string | null;
+  startDateEducation: string | null;
+  endDateEducation: string | null | null;
   userId: number;
 }
 
@@ -62,15 +62,15 @@ export default function FormExperience() {
     // ... (Add date formatting logic if needed) ...
 
     return (
-      <div className="flex flex-row items-center justify-between  mb-2 px-2">
+      <div className="mb-2 flex flex-row items-center  justify-between px-2">
         <div className="flex flex-col">
           <h3 className="text-md">{jobTitle}</h3>
           <p className="text-[12px]">{companyName}</p>
         </div>
-        <div className="flex items-center justify-start w-32">
-        <p className="text-[8px]">
-          {startDate} - {endDate}
-        </p>
+        <div className="flex w-32 items-center justify-start">
+          <p className="text-[8px]">
+            {startDate} - {endDate}
+          </p>
         </div>
       </div>
     );
@@ -85,15 +85,15 @@ export default function FormExperience() {
     // ... (Add date formatting logic if needed) ...
 
     return (
-      <div className="flex flex-row items-center justify-between mb-2">
+      <div className="mb-2 flex flex-row items-center justify-between">
         <div className="flex flex-col">
           <h3 className="text-md ">{degree}</h3>
           <p className="text-[12px]">{institution}</p>
         </div>
-        <div className="flex items-center justify-start w-32">
-        <p className="text-[8px]">
-          {startDateEducation} - {endDateEducation}
-        </p>
+        <div className="flex w-32 items-center justify-start">
+          <p className="text-[8px]">
+            {startDateEducation} - {endDateEducation}
+          </p>
         </div>
       </div>
     );
@@ -128,7 +128,7 @@ export default function FormExperience() {
             Informações profissionais
           </h3>
 
-          <div className="lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between lg:mt-5">
+          <div className="lg:mt-5 lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between">
             <h3 className="text-sm font-normal text-[#008037]">
               Experiências profissionais
             </h3>
@@ -144,6 +144,7 @@ export default function FormExperience() {
                   endDate={experience.endDate}
                   responsibilities={experience.responsibilities}
                   userId={experience.userId}
+                  idExperience={0}
                 />
               ))}
               <div
@@ -168,7 +169,7 @@ export default function FormExperience() {
               />
             </Modal>
           </div>
-          <div className="lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between lg:mt-5">
+          <div className="lg:mt-5 lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between">
             <h3 className="text-sm font-normal text-[#008037]">
               Formação Acadêmica
             </h3>
@@ -181,6 +182,7 @@ export default function FormExperience() {
                   startDateEducation={education.startDateEducation}
                   endDateEducation={education.endDateEducation}
                   userId={education.userId} // Certifique-se de que esta propriedade esteja disponível
+                  idEducation={0}
                 />
               ))}
 
