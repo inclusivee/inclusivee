@@ -1,0 +1,44 @@
+"use server"
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+async function getUserEducationsAndExperiences({userId}) {
+  try {
+    // Busca todas as experiências do usuário
+    const experiences = await prisma.experience.findMany({
+      where: {
+        userId: userId,
+      }
+    });
+
+    // Busca todas as educações do usuário
+    const educations = await prisma.education.findMany({
+      where: {
+        userId: userId,
+      }
+    });
+    console.log('Experiências server:', experiences);
+    console.log('Educações server:', educations);
+    return { experiences, educations };
+  } catch (error) {
+    console.error('Erro ao buscar experiências e educações:', error);
+    throw error; // Lança o erro para que ele possa ser tratado pelo chamador
+  } finally {
+    prisma.$disconnect(); // Fecha a conexão com o banco de dados
+  }
+}
+// Exemplo de uso
+/* getUserEducationsAndExperiences(2)
+ .then(({ experiences, educations }) => {
+    console.log('Experiências:', experiences);
+    console.log('Educações:', educations);
+  })
+ .catch((error) => {
+    console.error('Erro ao buscar experiências e educações:', error);
+  })
+ .finally(() => {
+    prisma.$disconnect(); // Lembre-se de fechar a conexão quando terminar
+  }); */
+
+export default getUserEducationsAndExperiences;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import BackgroudForm from "@/modules/components/bgForm";
 import Link from "next/link";
 import Modal from "react-modal";
@@ -7,7 +7,6 @@ import FormEducation from "@/modules/components/formdegree";
 import FormExperienceComponent from "@/modules/components/formExperience";
 import { PrismaClient } from "@prisma/client";
 import Cookies from "js-cookie";
-import getUserEducationsAndExperiences from "@/modules/actions/getExperienceDegree-action";
 
 Modal.setAppElement("body");
 interface Experience {
@@ -18,6 +17,15 @@ interface Experience {
   endDate: string | null;
   responsibilities: string;
   userId: number;
+  user: {
+    id: number;
+    email: string;
+    name: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
+    type: string;
+  };
 }
 
 interface Education {
@@ -27,6 +35,15 @@ interface Education {
   startDateEducation: string;
   endDateEducation: string | null;
   userId: number;
+  user: {
+    id: number;
+    email: string;
+    name: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
+    type: string;
+  };
 }
 
 const prisma = new PrismaClient();
@@ -37,21 +54,39 @@ export default function FormExperience() {
   const [educations, setEducations] = useState<Education[]>([]);
   // Exemplo de uso
   useEffect(() => {
-    if (userId) {
-      const parsedUserId = parseInt(userId, 10);
-      getUserEducationsAndExperiences({ userId: parsedUserId })
-        .then(({ experiences, educations }) => {
-          setExperiences(experiences);
-          setEducations(educations);
-          console.log("Experiências front:", experiences);
-          console.log("Educações: front", educations);
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar experiências e educações:", error);
-        });
-    }
-  }, [userId]);
+    async function fetchUserEducationsAndExperiences() {
+      if (userId) {
+        try {
+          // Busca todas as experiências do usuário
+          const experiencesData = await prisma.experience.findMany({
+            where: {
+              userId: Number(userId),
+            },
+            include: {
+              user: true, // Inclui detalhes do usuário relacionado
+            },
+          });
 
+          // Busca todas as educações do usuário
+          const educationsData = await prisma.education.findMany({
+            where: {
+              userId: Number(userId),
+            },
+            include: {
+              user: true, // Inclui detalhes do usuário relacionado
+            },
+          });
+
+          setExperiences(experiencesData);
+          setEducations(educationsData);
+        } catch (error) {
+          console.error("Erro ao buscar experiências e educações:", error);
+        }
+      }
+    }
+
+    fetchUserEducationsAndExperiences();
+  }, [userId]);
   const ExperienceCard = ({
     companyName,
     jobTitle,
@@ -62,16 +97,14 @@ export default function FormExperience() {
     // ... (Add date formatting logic if needed) ...
 
     return (
-      <div className="flex flex-row items-center justify-between  mb-2 px-2">
+      <div className="justify-batween flex flex-row items-center">
         <div className="flex flex-col">
           <h3 className="text-md">{jobTitle}</h3>
-          <p className="text-[12px]">{companyName}</p>
-        </div>
-        <div className="flex items-center justify-start w-32">
-        <p className="text-[8px]">
+          <p className="text-sm">{companyName}</p>
+        </div>{" "}
+        <p className="text-sm">
           {startDate} - {endDate}
         </p>
-        </div>
       </div>
     );
   };
@@ -85,16 +118,14 @@ export default function FormExperience() {
     // ... (Add date formatting logic if needed) ...
 
     return (
-      <div className="flex flex-row items-center justify-between mb-2">
+      <div className="justify-batween flex flex-row items-center">
         <div className="flex flex-col">
-          <h3 className="text-md ">{degree}</h3>
-          <p className="text-[12px]">{institution}</p>
+          <h3 className="text-md">{degree}</h3>
+          <p className="text-sm">{institution}</p>
         </div>
-        <div className="flex items-center justify-start w-32">
-        <p className="text-[8px]">
+        <p className="text-sm">
           {startDateEducation} - {endDateEducation}
         </p>
-        </div>
       </div>
     );
   };
@@ -128,30 +159,28 @@ export default function FormExperience() {
             Informações profissionais
           </h3>
 
-          <div className="lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between lg:mt-5">
+          <div className="lg:flex lg:w-full lg:flex-row lg:items-center lg:justify-between">
             <h3 className="text-sm font-normal text-[#008037]">
               Experiências profissionais
             </h3>
-            {/*             <button onClick={handleClick}>Buscar Dados</button>
-             */}
-            <div className="w-3/6">
-              {experiences.map((experience) => (
-                <ExperienceCard
-                  key={experience.idExperience} // Certifique-se de que esta propriedade esteja disponível
-                  companyName={experience.companyName}
-                  jobTitle={experience.jobTitle}
-                  startDate={experience.startDate}
-                  endDate={experience.endDate}
-                  responsibilities={experience.responsibilities}
-                  userId={experience.userId}
-                />
-              ))}
-              <div
-                onClick={handleOpenExperienceModal}
-                className="text-sm font-normal text-[#008037]"
-              >
-                + Adicionar Nova Experiência Profissional
-              </div>
+
+            {experiences.map((experience) => (
+              <ExperienceCard
+                key={experience.idExperience} // Certifique-se de que esta propriedade esteja disponível
+                companyName={experience.companyName}
+                jobTitle={experience.jobTitle}
+                startDate={experience.startDate}
+                endDate={experience.endDate}
+                responsibilities={experience.responsibilities}
+                userId={experience.userId}
+                user={experience.user} // Certifique-se de que esta propriedade esteja disponível
+              />
+            ))}
+            <div
+              onClick={handleOpenExperienceModal}
+              className="text-sm font-normal text-[#008037]"
+            >
+              + Adicionar Nova Experiência Profissional
             </div>
 
             <Modal isOpen={isExperienceModalOpen}>
@@ -168,28 +197,28 @@ export default function FormExperience() {
               />
             </Modal>
           </div>
-          <div className="lg:flex lg:w-full lg:flex-row lg:items-start lg:justify-between lg:mt-5">
+          <div className="lg:flex lg:w-full lg:flex-row lg:items-center lg:justify-between">
             <h3 className="text-sm font-normal text-[#008037]">
               Formação Acadêmica
             </h3>
-            <div className="w-3/6">
-              {educations.map((education) => (
-                <EducationCard
-                  key={education.idEducation} // Certifique-se de que esta propriedade esteja disponível
-                  degree={education.degree}
-                  institution={education.institution}
-                  startDateEducation={education.startDateEducation}
-                  endDateEducation={education.endDateEducation}
-                  userId={education.userId} // Certifique-se de que esta propriedade esteja disponível
-                />
-              ))}
 
-              <div
-                onClick={handleOpenEducationModal}
-                className="text-sm font-normal text-[#008037]"
-              >
-                + Adicionar Nova Formação Acadêmica
-              </div>
+            {educations.map((education) => (
+              <EducationCard
+                key={education.idEducation} // Certifique-se de que esta propriedade esteja disponível
+                degree={education.degree}
+                institution={education.institution}
+                startDateEducation={education.startDateEducation}
+                endDateEducation={education.endDateEducation}
+                userId={education.userId} // Certifique-se de que esta propriedade esteja disponível
+                user={education.user} // Certifique-se de que esta propriedade esteja disponível
+              />
+            ))}
+
+            <div
+              onClick={handleOpenEducationModal}
+              className="text-sm font-normal text-[#008037]"
+            >
+              + Adicionar Nova Formação Acadêmica
             </div>
 
             <Modal isOpen={isEducationModalOpen}>

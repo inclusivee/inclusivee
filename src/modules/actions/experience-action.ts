@@ -7,12 +7,12 @@ const prisma = new PrismaClient();
 async function createExperience(formData: FormData) {
   const jobTitle = formData.get("jobTitle") as string;
   const companyName = formData.get("companyName") as string;
-  const startDate = formData.get("startDate") as unknown as Date;
-  const endDate = formData.get("endDate") as unknown as Date;
-  const isCurrent = formData.get("isCurrent") as unknown as boolean;
+  const startDate = formData.get("startDate") as unknown as string;
+  const endDate = formData.get("endDate") as unknown as string;
   const responsibilities = formData.get("responsibilities") as string;
   const userIdString = formData.get("userId") as string;
   const userId = parseInt(userIdString) as unknown as number;
+  console.log(formData)
 
   await prisma.experience.create({
     data: {
@@ -20,12 +20,11 @@ async function createExperience(formData: FormData) {
       companyName,
       startDate,
       endDate,
-      isCurrent,
       responsibilities,
       userId
     },
   });
-  redirect("/pages/registryCurriculum/experience");
+ /*  redirect("/pages/registryCurriculum/ability"); */
 }
 
 export default createExperience;

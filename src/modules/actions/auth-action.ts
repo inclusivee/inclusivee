@@ -6,7 +6,19 @@ import { redirect } from 'next/navigation';
 
 const prisma = new PrismaClient
 
-async function createAccount(formData: FormData) {
+async function createAccount(name: string, email: string, password: string, type: string) {
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      password,
+      type,
+    },
+  });
+}
+
+/* async function createAccount(formData: FormData) {
   
   
     const name = formData.get("name") as string;
@@ -20,12 +32,13 @@ async function createAccount(formData: FormData) {
       data: {
           name,
           email,
-          password:hasPassword,
+          password,
+        //  password:hasPassword,
           type
       },
     });
     redirect("/pages/homeCandidato");
-  }
+  } */
 
   export default createAccount;
  
