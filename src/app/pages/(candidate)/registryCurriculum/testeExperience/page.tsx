@@ -11,11 +11,11 @@ import Cookies from "js-cookie";
 Modal.setAppElement("body");
 interface Experience {
   idExperience: number;
-  jobTitle: string;
-  companyName: string;
-  startDate: string;
+  jobTitle: string | null;
+  companyName: string | null;
+  startDate: string | null;
   endDate: string | null;
-  responsibilities: string;
+  responsibilities: string | null;
   userId: number;
   user: {
     id: number;
@@ -30,9 +30,9 @@ interface Experience {
 
 interface Education {
   idEducation: number;
-  degree: string;
-  institution: string;
-  startDateEducation: string;
+  degree: string | null;
+  institution: string | null;
+  startDateEducation: string | null;
   endDateEducation: string | null;
   userId: number;
   user: {
@@ -174,7 +174,7 @@ export default function FormExperience() {
                 responsibilities={experience.responsibilities}
                 userId={experience.userId}
                 user={experience.user} // Certifique-se de que esta propriedade esteja disponível
-              />
+                idExperience={0}              />
             ))}
             <div
               onClick={handleOpenExperienceModal}
@@ -211,7 +211,7 @@ export default function FormExperience() {
                 endDateEducation={education.endDateEducation}
                 userId={education.userId} // Certifique-se de que esta propriedade esteja disponível
                 user={education.user} // Certifique-se de que esta propriedade esteja disponível
-              />
+                idEducation={0}              />
             ))}
 
             <div
