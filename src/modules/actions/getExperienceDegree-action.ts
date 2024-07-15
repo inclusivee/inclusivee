@@ -28,17 +28,5 @@ async function getUserEducationsAndExperiences({userId}: {userId: number}) {
     prisma.$disconnect(); // Fecha a conexão com o banco de dados
   }
 }
-// Exemplo de uso
-/* getUserEducationsAndExperiences(2)
- .then(({ experiences, educations }) => {
-    console.log('Experiências:', experiences);
-    console.log('Educações:', educations);
-  })
- .catch((error) => {
-    console.error('Erro ao buscar experiências e educações:', error);
-  })
- .finally(() => {
-    prisma.$disconnect(); // Lembre-se de fechar a conexão quando terminar
-  }); */
 
 export default getUserEducationsAndExperiences;

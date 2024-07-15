@@ -16,18 +16,19 @@ model User {
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   type              String
+  ebility           Ability[]
   addresses         Address[]
+  education         Education[]
+  experience        Experience[]
+  jobs              Job[]
+  jobApplications   JobApplication[]
   candidateProfiles CandidateProfile[]
-  Experience        Experience[]
-  Ability           Ability[]
-  Education         Education[]
-  ResumeProfile     ResumeProfile[]
+  resumeProfile     ResumeProfile[]
 
   @@map("user")
 }
 
 model Address {
-  idAddress Int      @id @default(autoincrement())
   zipcode   String?
   street    String?
   number    String?
@@ -38,30 +39,30 @@ model Address {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int
+  idAddress Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
 
   @@map("address")
 }
 
 model CandidateProfile {
-  idCandidateProfile Int     @id @default(autoincrement())
-  fullName           String?
   birthday           String?
   cpf                String?
   rg                 String?
   phone              String?
   userId             Int
-
-  user User @relation(fields: [userId], references: [id])
+  fullName           String?
+  idCandidateProfile Int     @id @default(autoincrement())
+  user               User    @relation(fields: [userId], references: [id])
 
   @@map("profileCandidate")
 }
+
 model ResumeProfile {
   idResumeProfile Int     @id @default(autoincrement())
-  resume           String?
-  userId             Int
-
-  user User @relation(fields: [userId], references: [id])
+  resume          String?
+  userId          Int
+  user            User    @relation(fields: [userId], references: [id])
 
   @@map("resumeProfile")
 }
@@ -70,12 +71,11 @@ model Experience {
   idExperience     Int     @id @default(autoincrement())
   jobTitle         String?
   companyName      String?
-  startDate        String?
-  endDate          String?
   responsibilities String?
   userId           Int
-
-  user User @relation(fields: [userId], references: [id])
+  startDate        String?
+  endDate          String?
+  user             User    @relation(fields: [userId], references: [id])
 
   @@map("experience")
 }
@@ -94,11 +94,39 @@ model Education {
   idEducation        Int     @id @default(autoincrement())
   degree             String?
   institution        String?
+  userId             Int
   startDateEducation String?
   endDateEducation   String?
-  userId             Int
-
-  user User @relation(fields: [userId], references: [id])
+  user               User    @relation(fields: [userId], references: [id])
 
   @@map("education")
+}
+
+model Job {
+  idJob                  Int              @id @default(autoincrement())
+  jobTitle               String
+  requiredAbilities      String[]
+  desiredExperienceYears Int
+  desiredEducationLevel  String
+  descriptionJob         String?           @default("")
+  active                 Boolean          @default(true)
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+  userId                 Int
+  user                   User             @relation(fields: [userId], references: [id])
+  jobApplications        JobApplication[]
+
+  @@map("job")
+}
+
+model JobApplication {
+  idJobApplication Int      @id @default(autoincrement())
+  userId           Int
+  jobId            Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  job              Job      @relation(fields: [jobId], references: [idJob])
+  user             User     @relation(fields: [userId], references: [id])
+
+  @@map("jobApplication")
 }

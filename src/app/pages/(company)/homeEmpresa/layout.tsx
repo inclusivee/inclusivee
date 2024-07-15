@@ -34,48 +34,48 @@ export default function RootLayout({
             >
               <Image
                 src="/assets/image/profile.png"
-                alt="Logo Inclusivee"
+                alt="Icone cadastrar prefil da empresa"
                 width={32}
                 height={0}
                 className=""
               />
             </Link>
-            <Link
+            {/* <Link
               href={"/pages/homeEmpresa"}
               className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10  md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/order.png"
-                alt="Logo Inclusivee"
+                alt="Icone ordem de compra"
                 width={20}
                 height={0}
                 className=""
               />
-            </Link>
+            </Link> */}
             <Link
-              href={"/pages/homeEmpresa"}
+              href={"/pages/vagas"}
               className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10  md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/job.png"
-                alt="Logo Inclusivee"
+                alt="Icone de vagas"
                 width={28}
                 height={0}
                 className=""
               />
             </Link>
-            <Link
+            {/* <Link
               href={"/pages/homeEmpresa"}
               className="md:px10  flex  items-center justify-center px-5 py-1 text-sm text-white sm:text-lg md:h-auto md:px-10  md:py-3 md:text-2xl lg:mr-10  lg:rounded-lg lg:px-2"
             >
               <Image
                 src="/assets/image/cart.png"
-                alt="Logo Inclusivee"
+                alt="Icone carrinho de compras"
                 width={40}
                 height={0}
                 className=""
               />
-            </Link>
+            </Link> */}
 
             <Link
               href={"/pages/homeEmpresa"}
@@ -83,7 +83,7 @@ export default function RootLayout({
             >
               <Image
                 src="/assets/image/notification.png"
-                alt="Logo Inclusivee"
+                alt="Icone de notificações"
                 width={60}
                 height={0}
                 className=""

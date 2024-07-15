@@ -43,8 +43,6 @@ export default function FormExperience() {
         .then(({ experiences, educations }) => {
           setExperiences(experiences);
           setEducations(educations);
-          console.log("Experiências front:", experiences);
-          console.log("Educações: front", educations);
         })
         .catch((error) => {
           console.error("Erro ao buscar experiências e educações:", error);
