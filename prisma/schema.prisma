@@ -14,7 +14,7 @@ model User {
   name              String
   password          String
   createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+  updatedAt         DateTime           @updatedAt    
   type              String
   ebility           Ability[]
   addresses         Address[]

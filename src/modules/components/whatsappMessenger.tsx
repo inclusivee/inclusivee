@@ -1,28 +1,41 @@
-const WhatsappMessenger = () => {
-  return (
-    <div className="bg-white shadow-md rounded-md p-4">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium text-gray-900">VAGA - Marketing</h3>
-        <span className="inline-block bg-green-500 text-white px-3 py-2 rounded-md">Sênior</span>
-      </div>
 
-      <div className="mt-3">
-        <p className="text-gray-600">Equipe de Compras</p>
+function WhatsappMessenger () {
+
+  function sendMenssengerWhatsapp(){
+    return "https://wa.me/27992620564?text=Ola%20tudo%20bem?"
+  } 
+  
+
+
+
+  return (
+    <div className=" lg:bg-[#e2e0e2] lg:px-3 lg:py-3  lg:shadow-md lg:rounded-lg">
+      <div className="flex flex-col">
+        <h3 className="text-lg font-medium text-gray-900">VAGA - Marketing</h3>
+        <p className="inline-block rounded-md bg-green-500 px-3 py-2 text-sm text-gray-300">
+          Sênior - Equipe de compra
+        </p>
       </div>
 
       <div className="mt-5">
         <textarea
-          className="w-full h-40 border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className=" w-full lg:bg-[#e2e0e2] rounded-md border border-gray-300 bg-slate-400 p-3"
           placeholder="Escreva sua mensagem"
+          rows={5}
         />
       </div>
 
-      <div className="flex justify-end mt-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Limpar</button>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-green-600">Enviar</button>
+      <div className="w- mt-4 flex justify-end">
+        <button className=" w-32 rounded-3xl border-2  border-[#008037]  px-4 py-2 text-black">
+          Limpar
+        </button>
+        <button onClick={sendMenssengerWhatsapp} className="ml-2 w-32 rounded-3xl bg-[#35693E] px-4 py-2 text-white ">
+          Enviar
+        </button>
       </div>
     </div>
   );
 };
+
 
 export default WhatsappMessenger;

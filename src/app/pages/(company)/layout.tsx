@@ -99,7 +99,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="relative">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

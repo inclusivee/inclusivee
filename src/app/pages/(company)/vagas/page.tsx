@@ -11,6 +11,8 @@ import EditJob from "@/modules/components/editJob";
 import DeletJob from "@/modules/components/deletJob";
 import ViewedJob from "@/modules/components/viewedJob";
 import updateJobStatus from "@/modules/actions/deletjob-action";
+import Link from "next/link";
+import { cookies } from "next/headers";
 
 Modal.setAppElement("body");
 
@@ -57,6 +59,10 @@ export default function CreateJob() {
     setIsCreating(false);
     setShowFormType("edit");
   };
+  const handleSelectedJobClick = (job: Job) => {
+    Cookies.set('selectedJobId', job.idJob, { expires: 7 }); // Expira em 7 dias
+    window.location.href = '/pages/vagas/selecionados';
+  };
 
   const handleViewClick = (job: Job) => {
     setViewingJob(job);
@@ -75,51 +81,65 @@ export default function CreateJob() {
     desiredEducationLevel,
     descriptionJob,
     userId,
-    active
+    active,
   }: Job) => {
     return (
       <div className="w-6/6 flex cursor-pointer flex-row items-center justify-between p-2 px-2 ">
-        <div className="flex flex-col lg:w-full">
-          <div className="flex items-center justify-between border hover:border-b-slate-400">
+        <div className="flex flex-row justify-between  border hover:border-b-slate-400 lg:w-full">
+          <div
+            className="w-full"
+            onClick={() =>
+              handleSelectedJobClick({
+                idJob,
+                jobTitle,
+                requiredAbilities,
+                desiredExperienceYears,
+                desiredEducationLevel,
+                userId,
+                descriptionJob,
+                active,
+              })
+            }
+          >
             <h3 className="text-md">{jobTitle}</h3>
-            <div className="flex items-center">
-              <div
-                className=""
-                onClick={() =>
-                  handleViewClick({
-                    idJob,
-                    jobTitle,
-                    requiredAbilities,
-                    desiredExperienceYears,
-                    desiredEducationLevel,
-                    userId,
-                    descriptionJob,
-                    active,
-                  })
-                }
-              >
-                <ViewJob />
-              </div>
-              <div
-                className=""
-                onClick={() =>
-                  handleJobClick({
-                    idJob,
-                    jobTitle,
-                    requiredAbilities,
-                    desiredExperienceYears,
-                    desiredEducationLevel,
-                    userId,
-                    descriptionJob,
-                    active,
-                  })
-                }
-              >
-                <EditJob />
-              </div>
-              <div className=""  onClick={() => setIsConfirmModalOpen(true)}>
-                <DeletJob />
-              </div>
+          </div>
+          <div className="flex items-center">
+            <div
+              className=""
+              onClick={() =>
+                handleViewClick({
+                  idJob,
+                  jobTitle,
+                  requiredAbilities,
+                  desiredExperienceYears,
+                  desiredEducationLevel,
+                  userId,
+                  descriptionJob,
+                  active,
+                })
+              }
+            >
+              <ViewJob />
+            </div>
+            <div
+              className=""
+              onClick={() =>
+                handleJobClick({
+                  idJob,
+                  jobTitle,
+                  requiredAbilities,
+                  desiredExperienceYears,
+                  desiredEducationLevel,
+                  userId,
+                  descriptionJob,
+                  active,
+                })
+              }
+            >
+              <EditJob />
+            </div>
+            <div className="" onClick={() => setIsConfirmModalOpen(true)}>
+              <DeletJob />
             </div>
           </div>
         </div>
@@ -138,14 +158,16 @@ export default function CreateJob() {
     setIsModalOpen(false);
   };
 
-
   const handleDeleteJob = async () => {
     if (selectedJob) {
       try {
-        await updateJobStatus({ jobId: selectedJob.idJob, userId: selectedJob.userId });
+        await updateJobStatus({
+          jobId: selectedJob.idJob,
+          userId: selectedJob.userId,
+        });
         setIsConfirmModalOpen(false); // Fecha o modal de confirmação
       } catch (error) {
-        console.error('Erro ao inativar a vaga:', error);
+        console.error("Erro ao inativar a vaga:", error);
       }
     }
   };
@@ -161,7 +183,7 @@ export default function CreateJob() {
         </button>
       </div>
 
-    {/* Modal Create Job */}
+      {/* Modal Create Job */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseJOBModal}
@@ -186,8 +208,8 @@ export default function CreateJob() {
         )}
       </Modal>
 
-{/* Modal View Job */}     
-     <Modal
+      {/* Modal View Job */}
+      <Modal
         isOpen={isViewModalOpen}
         onRequestClose={handleCloseViewModal}
         contentLabel="Visualizar Vaga"
@@ -204,33 +226,33 @@ export default function CreateJob() {
       </Modal>
 
       {isConfirmModalOpen && (
-  <Modal
-    isOpen={isConfirmModalOpen}
-    onRequestClose={() => setIsConfirmModalOpen(false)}
-    contentLabel="Confirmação de Inativação"
-  >
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white p-5 rounded shadow-lg">
-        <h2 className="text-lg font-semibold mb-2">Tem certeza?</h2>
-        <p>Você realmente deseja inativar esta vaga?</p>
-        <div className="flex items-center mt-4 space-x-2">
-          <button
-            onClick={handleDeleteJob}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Confirmar
-          </button>
-          <button
-            onClick={() => setIsConfirmModalOpen(false)} // Fecha o modal
-            className="bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300"
-          >
-            Cancelar
-          </button>
-        </div>
-      </div>
-    </div>
-  </Modal>
-)}
+        <Modal
+          isOpen={isConfirmModalOpen}
+          onRequestClose={() => setIsConfirmModalOpen(false)}
+          contentLabel="Confirmação de Inativação"
+        >
+          <div className="flex h-screen items-center justify-center">
+            <div className="rounded bg-white p-5 shadow-lg">
+              <h2 className="mb-2 text-lg font-semibold">Tem certeza?</h2>
+              <p>Você realmente deseja inativar esta vaga?</p>
+              <div className="mt-4 flex items-center space-x-2">
+                <button
+                  onClick={handleDeleteJob}
+                  className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
+                >
+                  Confirmar
+                </button>
+                <button
+                  onClick={() => setIsConfirmModalOpen(false)} // Fecha o modal
+                  className="rounded bg-gray-200 px-4 py-2 text-black hover:bg-gray-300"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
 
       <div className="lg:mx-10 lg:mt-5  lg:flex lg:w-2/6">
         <div className="lg:flex ">
