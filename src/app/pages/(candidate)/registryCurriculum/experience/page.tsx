@@ -5,7 +5,6 @@ import Link from "next/link";
 import Modal from "react-modal";
 import FormEducation from "@/modules/components/formdegree";
 import FormExperienceComponent from "@/modules/components/formExperience";
-import { PrismaClient } from "@prisma/client";
 import Cookies from "js-cookie";
 import getUserEducationsAndExperiences from "@/modules/actions/getExperienceDegree-action";
 
@@ -29,7 +28,7 @@ interface Education {
   userId: number;
 }
 
-const prisma = new PrismaClient();
+
 
 export default function FormExperience() {
   const userId = Cookies.get("userId");
@@ -57,7 +56,6 @@ export default function FormExperience() {
     endDate,
     idExperience,
   }: Experience) => {
-    // ... (Add date formatting logic if needed) ...
 
     return (
       <div className="mb-2 flex flex-row items-center  justify-between px-2">
@@ -80,7 +78,6 @@ export default function FormExperience() {
     startDateEducation,
     endDateEducation,
   }: Education) => {
-    // ... (Add date formatting logic if needed) ...
 
     return (
       <div className="mb-2 flex flex-row items-center justify-between">

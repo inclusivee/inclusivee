@@ -1,12 +1,12 @@
 'use server'
 import bcrypt from 'bcrypt';
-import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers'
+import prisma from '../../../lib/prisma';
 
 
 
-const prisma = new PrismaClient();
+
 
 async function loginAccount(formData: FormData) {
  const email = formData.get("email") as string;

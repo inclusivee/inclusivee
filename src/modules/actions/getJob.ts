@@ -1,7 +1,7 @@
 "use server"
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+import prisma from "../../../lib/prisma";
+
 
 async function getJob({userId}: {userId: number}) {
   try {

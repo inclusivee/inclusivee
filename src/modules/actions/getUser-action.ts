@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from "../../../lib/prisma";
 
 async function getUserWithAllData({userId}: {userId: number}) {
   // Busca o usuário e inclui todas as suas experiências e educações relacionadas

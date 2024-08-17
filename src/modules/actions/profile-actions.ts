@@ -1,8 +1,8 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
+import prisma from "../../../lib/prisma";
 
-const prisma = new PrismaClient();
+
 
 async function createOrUpdateCandidateProfile(formData: FormData) {
   const fullName = formData.get("fullName") as string;

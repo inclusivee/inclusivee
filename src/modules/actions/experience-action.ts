@@ -1,8 +1,9 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
-import { redirect } from "next/navigation";
 
-const prisma = new PrismaClient();
+import { redirect } from "next/navigation";
+import prisma from "../../../lib/prisma";
+
+
 
 async function createExperience(formData: FormData) {
   const jobTitle = formData.get("jobTitle") as string;

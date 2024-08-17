@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../lib/prisma";
 
-const prisma = new PrismaClient();
 
 async function updateJob(idJob: number, formData: FormData) {
   // Extrair dados do FormData

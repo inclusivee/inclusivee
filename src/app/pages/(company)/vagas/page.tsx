@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
-import { PrismaClient } from "@prisma/client";
 import JobForm from "@/modules/components/formJob";
 import Cookies from "js-cookie";
 import getJob from "@/modules/actions/getJob";
@@ -11,8 +10,6 @@ import EditJob from "@/modules/components/editJob";
 import DeletJob from "@/modules/components/deletJob";
 import ViewedJob from "@/modules/components/viewedJob";
 import updateJobStatus from "@/modules/actions/deletjob-action";
-import Link from "next/link";
-import { cookies } from "next/headers";
 
 Modal.setAppElement("body");
 

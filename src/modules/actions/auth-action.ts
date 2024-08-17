@@ -1,10 +1,9 @@
 'use server'
 import bcrypt from 'bcrypt'
-import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import prisma from '../../../lib/prisma';
 
 
-const prisma = new PrismaClient
 
 //código para csv
 /* async function createAccount(name: string, email: string, password: string, type: string) {
